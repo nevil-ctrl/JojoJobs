@@ -10,57 +10,61 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = trim($_POST['password']);
 
     if ($login === '' || $email === '' || $password === '') {
-        $_SESSION['errors'] = "Заполни все поля а!";
+        $errors[] = "Заполни все поля!";
     } 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['errors'] = "Некорректный email!";
+        $errors[] = "Некорректный email!";
     }
-     if (strlen($password) < 4) {
-        $_SESSION['errors'] = "Пароль должен быть не менее 4 символов!";
+    if (strlen($password) < 4) {
+        $errors[] = "Пароль должен быть не менее 4 символов!";
     } 
 
-
-
-
-    if (empty($_SESSION['error'])) {
+    if (empty($errors)) {
         try {
             $stmt = $conn->prepare("SELECT * FROM users WHERE login = ? OR email = ?");
             $stmt->execute([$login, $email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($user === false || !password_verify($password, $user['password'])) {
-                $_SESSION['errors'] = "Неверный логин или пароль!";
+            if (!$user || !password_verify($password, $user['password'])) {
+                $errors[] = "Неверный логин или пароль!";
             } else {
                 $_SESSION['user'] = $user;
                 header("Location: /");
                 exit();
             }
         } catch (PDOException $e) {
-            echo "Ошибка: " . $e->getMessage();
+            $errors[] = "Иди в жопу это Ошибка: " . $e->getMessage();
         }
     }
 }
-        
+?> 
 
-       
-?>
 <?php if (!empty($errors)): ?>
-    <ul>
-        <?php foreach ($errors as $msg) echo "<li>$msg</li>"; ?>
+    <ul class="login-errors">
+        <?php foreach ($errors as $msg): ?>
+            <li><?= htmlspecialchars($msg) ?></li>
+        <?php endforeach; ?>
     </ul>
 <?php endif; ?>
 
-<form class="register-form" method="post" action="">
-    <h2>Регистрация</h2>
+<form method="post">
     <label for="login">Имя
-        <input id="login" name="login" type="text" placeholder="Введите логин" required>
+        <input id="login" 
+        name="login" 
+        type="text" 
+        placeholder="Введите логин" required>
     </label>
     <label for="email">Почта
-        <input id="email" name="email" type="email" placeholder="Введите почту" required>
+        <input id="email" 
+        name="email" 
+        type="email" 
+        placeholder="Введите почту" required>
     </label>
     <label for="password">Пароль
-        <input id="password" name="password" type="password" placeholder="Введите пароль" required>
-        <!-- <img src="" alt=""> -->
+        <input id="password" 
+        name="password" 
+        type="password" 
+        placeholder="Введите пароль" required autocomplete="current-password">
     </label>
     <button type="submit">Войти</button>
 </form>
