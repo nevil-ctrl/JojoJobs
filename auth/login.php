@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             } else {
                 $_SESSION['user'] = $user;
                 header("Location: /");
-                exit();
+                exit(); 
             }
         } catch (PDOException $e) {
             $errors[] = "Иди в жопу это Ошибка: " . $e->getMessage();
