@@ -1,6 +1,5 @@
 <?php 
 require_once __DIR__ . '/../config/db.php';
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $login = trim($_POST['login']);
     $email = trim($_POST['email']);
@@ -24,7 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 $stmt = $conn->prepare("INSERT INTO users (login, password, email) VALUES (?, ?, ?)");
                 if ($stmt->execute([$login, $hashedPassword, $email])) {
-                    echo "Успешная регистрация";
+                    $_SESSION['user'] = $user;
+                header("Location: /");
+                exit(); 
+                    
                 } else {
                     echo "Ошибка при регистрации";
                 }

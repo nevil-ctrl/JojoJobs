@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
+<?php $titleName = 'Вход'?>
 
 <form method="post">
     <label for="login">Имя
