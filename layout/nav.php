@@ -1,5 +1,5 @@
 <nav class="nav container">
-    <div class="logo">JojoJobs</div>
+    <div class="logo">JojoJobs </div>
 
     <div class="nav-links">
         <div><a href="/jobs">Вакансии</a></div>
@@ -26,6 +26,8 @@
         <?php endif; ?>
     </div>
 </nav>
+
+<h1>eijjfeiriuiunjn</h1>
 
 
 
