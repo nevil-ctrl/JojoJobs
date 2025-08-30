@@ -1,5 +1,7 @@
 <?php 
+session_start();
 require_once __DIR__ . '/../config/db.php';
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $login = trim($_POST['login']);
     $email = trim($_POST['email']);
@@ -10,7 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "Заполните все поля";
     } elseif ($password !== $repeatpass) {
         echo "Пароли не совпадают";
-    } else {
+    }elseif
+        (strlen($password) < 4) {
+        echo "Пароль должен быть не менее 4 символов!";
+    }else {
         try {
             $stmt = $conn->prepare("SELECT * FROM users WHERE login = ? OR email = ?");
             $stmt->execute([$login, $email]);

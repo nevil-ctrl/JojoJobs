@@ -1,82 +1,140 @@
-<?php
+<nav class="nav container">
+    <div class="logo">DevJobs</div>
 
-?>
-
-<nav class="nav">
-    <div class="nav_main">
-        <a href="/">JoJoobs Kg</a>
+    <div class="nav-links">
+        <div><a href="/jobs">Вакансии</a></div>
+        <div><a href="/companies">Компании</a></div>
+        <div><a href="/resume">Резюме</a></div>
+        <div><a href="/blog">О нас</a></div>
     </div>
-    <div class="nav_link">
-        <a href="/">О нас</a>
-        <a href="/">Наш телеграмм</a>
-        <a href="/">Фильтр</a>
 
-       <div class="nav_profile">
-    <?php if (isset($_SESSION['user'])): ?>
-
-        <div class="profile_nav_avatar">
-            <img src="#" alt="Аватар" class="avatar">
-            <div class="dropdown_profile">
-                <a href="/profile">Profile</a>
-                <a href="/logout">Logout</a>
+    <div class="nav_profile">
+        <?php if (isset($_SESSION['user'])): ?>
+            <div class="profile_nav_avatar">
+                <div onclick="profileDrop()" class="avatar"> <img class="image" src="https://i.pinimg.com/736x/04/4b/0e/044b0e3bfc993390d7fae1ed2f072a97.jpg" alt="Аватар"></div>
+                <ul id="dropdown_profile" class="dropdown_profile hiddenZ">
+                    <li><a href="/profile">Профиль</a></li>
+                    <li><a href="/logout">Выйти</a></li>
+                    <li><a href="/settings">Настройки</a></li>
+                </ul>
             </div>
-        </div>
-    <?php else: ?>
-        <a href="/login">Log</a>
-        <a href="/registr">Reg</a>
-    <?php endif; ?>
-</div>
-
-
-        </div>
+        <?php else: ?>
+      <div class="auth-buttons">
+            <a href="/login" class="btn-login">Войти</a>
+            <a href="/register" class="btn-register">Регистрация</a>
+            </div>
+        <?php endif; ?>
     </div>
 </nav>
+
+
+
 <style>
-    .nav_profile{
-        display: flex;
-        gap: 5px;
-    }
-.profile_nav_avatar {
-    position: relative;
+.profile_nav_avatar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     cursor: pointer;
 }
-
 .dropdown_profile {
-    display: none;
-    position: absolute;
-    top: 50px;
-    right: 0;
     background: #fff;
-    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0;  
+    box-shadow: 0 2px 3px #9e9797ff;
     flex-direction: column;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: none; 
+    position: absolute;
+    top: 90px; 
 }
+.hidden { display: block; } 
 
-.dropdown_profile.active {
+.dropdown_profile li{
+    padding: 5px;
+}
+.image{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+.container {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px;
+}
+.logo {
+font-size: 1.8rem;
+font-weight: 800;
+background: linear-gradient(135deg, #667eea, #764ba2);
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.nav-links {
+display: flex;
+list-style: none;
+gap: 2rem;
+}
+.nav-links a {
+text-decoration: none;
+color: #4b5563;
+font-weight: 500;
+transition: color 0.3s ease;
+position: relative;
+}
+.nav-links a:hover {
+color: #667eea;
+}
+.nav-links a::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -5px;
+left: 0;
+background: linear-gradient(135deg, #667eea, #764ba2);
+transition: width 0.3s ease;
+}
+.nav-links a:hover::after {
+    width: 100%;
+}
+.auth-buttons {
     display: flex;
+    gap: 1rem;
 }
-
-.dropdown_profile a {
-    display: block;
-    padding: 10px 20px;
-    color: #333;
-    text-decoration: none;
+.btn-login {
+padding: 0.5rem 1.5rem;
+border: 2px solid #667eea;
+background: transparent;
+color: #667eea;
+border-radius: 25px;
+text-decoration: none;
+font-weight: 600;
+transition: all 0.3s ease;
 }
-
-.dropdown_profile a:hover {
-    background-color: #f0f0f0;
+.btn-login:hover {
+background: #667eea;
+color: white;
+transform: translateY(-2px);
+box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
 }
-
-
+.btn-register {
+padding: 0.5rem 1.5rem;
+background: linear-gradient(135deg, #667eea, #764ba2);
+color: white;
+border-radius: 25px;
+text-decoration: none;
+font-weight: 600;
+transition: all 0.3s ease;
+box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+.btn-register:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
 
 </style>
-
-<script>
-const avatar = document.querySelector('.profile_nav_avatar');
-const menu = document.querySelector('.dropdown_profile');
-
-avatar.addEventListener('click', () => {
-    menu.classList.toggle('active'); 
-});
-
-</script>
+<script src="/assets/js/app.js"></script>
