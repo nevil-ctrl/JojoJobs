@@ -27,10 +27,6 @@
     </div>
 </nav>
 
-<h1>ifrerjfoiewrier0g</h1>
-
-
-
 <style>
 .profile_nav_avatar{
     display: flex;
