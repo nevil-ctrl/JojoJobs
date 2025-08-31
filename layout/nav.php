@@ -1,3 +1,21 @@
+<?php
+require_once __DIR__ . '/../config/db.php';
+
+$userAvatar = 'default.png'; // по умолчанию
+
+if (!empty($_SESSION['user']['id'])) {
+    $userId = $_SESSION['user']['id'];
+
+    $stmt = $conn->prepare("SELECT avatar FROM users WHERE id = ?");
+    $stmt->execute([$userId]);
+    $avatar = $stmt->fetchColumn();
+
+    if ($avatar) {
+        $userAvatar = $avatar;
+    }
+}
+?>
+
 <nav class="nav container">
     <div class="logo"><a href="/">JojoJobs</a> </div>
 
@@ -11,7 +29,7 @@
     <div class="nav_profile">
         <?php if (isset($_SESSION['user'])): ?>
             <div class="profile_nav_avatar">
-                <div onclick="profileDrop()" class="avatar"> <img class="image" src="https://i.pinimg.com/736x/04/4b/0e/044b0e3bfc993390d7fae1ed2f072a97.jpg" alt="Аватар"></div>
+                <div onclick="profileDrop()" class="avatar"> <img src="/uploads/avatars/<?= htmlspecialchars($userAvatar) ?>?<?= time() ?>" alt="Аватар" class="image"></div>
                 <ul id="dropdown_profile" class="dropdown_profile">
                     <li><a href="/profile">Профиль</a></li>
                     <li><a href="/logout">Выйти</a></li>
