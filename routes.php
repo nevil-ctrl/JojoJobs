@@ -14,7 +14,12 @@ get('/logout', 'auth/logout.php');
 any('/logout','auth/logout.php');
 
 get('/profile', 'pages/profile/profile.php');
-any('/profileUpdate', 'pages/profile/profile_update.php');
 any('/profile', 'pages/profile/profile.php');
+any('/profileUpdate', 'pages/profile/profile_update.php');
+
+get('/avatar', 'pages/profile/upload_avatar.php');
+any('/avatar','pages/profile/upload_avatar.php');
+
+
 
 any('/404','pages/404.php');
