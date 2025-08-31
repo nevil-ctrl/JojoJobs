@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $errors[] = "Неверный логин или пароль!";
             } else {
                 $_SESSION['user'] = $user;
-                header("Location: /");
+                header("Location: /profile");
                 exit(); 
             }
         } catch (PDOException $e) {

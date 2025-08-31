@@ -1,5 +1,5 @@
 <nav class="nav container">
-    <div class="logo">JojoJobs </div>
+    <div class="logo"><a href="/">JojoJobs</a> </div>
 
     <div class="nav-links">
         <div><a href="/jobs">Вакансии</a></div>
@@ -12,7 +12,7 @@
         <?php if (isset($_SESSION['user'])): ?>
             <div class="profile_nav_avatar">
                 <div onclick="profileDrop()" class="avatar"> <img class="image" src="https://i.pinimg.com/736x/04/4b/0e/044b0e3bfc993390d7fae1ed2f072a97.jpg" alt="Аватар"></div>
-                <ul id="dropdown_profile" class="dropdown_profile hidden">
+                <ul id="dropdown_profile" class="dropdown_profile">
                     <li><a href="/profile">Профиль</a></li>
                     <li><a href="/logout">Выйти</a></li>
                     <li><a href="/settings">Настройки</a></li>
@@ -21,7 +21,7 @@
         <?php else: ?>
       <div class="auth-buttons">
             <a href="/login" class="btn-login">Войти</a>
-            <a href="/register" class="btn-register">Регистрация</a>
+            <a href="/registr" class="btn-register">Регистрация</a>
             </div>
         <?php endif; ?>
     </div>
