@@ -27,6 +27,7 @@ $userAvatar = $avatar ?: 'default.png';
                   <button type="submit">Сохранить</button>
               </form>
               <a href="/profileUpdate">Изменить</a>
+              <a href="/">Главная страница</a>
                         <h2 class="profile-name">Александр Иванов</h2>
                         <p class="profile-title">Senior Frontend Developer</p>
                         <div class="profile-location">
