@@ -4,6 +4,7 @@ require_once __DIR__ . '/../../config/db.php';
 
 if (empty($_SESSION['user']['id'])) {
     header("Location: /login");
+    header("Location: /login");
     exit;
 }
 
