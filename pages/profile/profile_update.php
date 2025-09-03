@@ -16,7 +16,7 @@ $login = $_SESSION['user']['login'] ?? '';
 $email = $_SESSION['user']['email'] ?? '';
 $error = '';
 $success = '';
-
+$user = $_SESSION['user'] ?? null;
 // Обработка формы
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newLogin = trim($_POST['login'] ?? '');

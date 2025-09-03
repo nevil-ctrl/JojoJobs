@@ -21,5 +21,10 @@ get('/avatar', 'pages/profile/upload_avatar.php');
 any('/avatar','pages/profile/upload_avatar.php');
 
 
+get('/admin', 'pages/profile/admin/admin-porofile.php');
+any('/admin', 'pages/profile/admin/admin-profile.php');
+
+
+
 
 any('/404','pages/404.php');

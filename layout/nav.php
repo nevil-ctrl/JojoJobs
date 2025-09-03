@@ -34,6 +34,10 @@ if (!empty($_SESSION['user']['id'])) {
                     <li><a href="/profile">Профиль</a></li>
                     <li><a href="/logout">Выйти</a></li>
                     <li><a href="/settings">Настройки</a></li>
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['admin'] === 1): ?>
+                        <li><a href="/admin">Админ панель</a></li>
+                    <?php endif; ?>
+
                 </ul>
             </div>
         <?php else: ?>
