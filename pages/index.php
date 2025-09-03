@@ -7,4 +7,7 @@ $titleName = "JoJobsKg";
 
 require_once "./layout/header.php";
 require_once "./layout/nav.php";
+
+include"./include/categories.php";
+include"./include/jobs.php";
 ?>
