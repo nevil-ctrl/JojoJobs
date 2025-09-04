@@ -1,7 +1,10 @@
-CREATE TABLE `users` (
-  `id` int UNSIGNED NOT NULL,                      
-  `login` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL, -- логин
-  `email` varchar(255) NOT NULL,                         
-  `password` varchar(255) NOT NULL,                    
-  `avatar` varchar(255) DEFAULT NULL                   \
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+CREATE TABLE users (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  login VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  admin TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0 = обычный пользователь, 1 = админ',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
